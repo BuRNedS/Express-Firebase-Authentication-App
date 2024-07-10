@@ -4,4 +4,4 @@ A web application using Express.js and Firebase Firestore for user authenticatio
 Here is how to install:
 1. npm i to install all the required dependencies.
 2. inside src/firebase.js, Replace './path/to/your/serviceAccountKey.json' with the actual path to the downloaded JSON file.
-3. start your server.  
+3. start your server.. 
