@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        .success-message {
+            display: none;
+            color: green;
+            font-size: 18px;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid green;
+            border-radius: 5px;
+            background-color: #e6ffe6;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Login</h1>
+
+<div class="success-message" id="success-message">
+    🌸 Hello <span id="username"></span>, you are successfully logged in!
+</div>
+
+<form action="/login" method="post" onsubmit="return validateForm()">
+    <input placeholder="Name" name="name" type="text" id="name">
+    <br>
+    <input placeholder="Password" name="password" type="password" id="password">
+    <br>
+    <input class="sub" type="submit" value="Login">
+</form>
+
+<a href="/signup">Go to signup page</a>
+
+<script>
+    function validateForm() {
+        const name = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+
+        if (!name || !password) {
+            alert("Both fields must be filled out");
+            return false;
+        }
+        return true;
+    }
+
+    function showSuccessMessage(name) {
+        const successMessage = document.getElementById('success-message');
+        const username = document.getElementById('username');
+        username.textContent = name;
+        successMessage.style.display = 'block';
+    }
+
+    {{#if success}}
+    document.addEventListener('DOMContentLoaded', function() {
+        showSuccessMessage('{{success.name}}');
+    });
+    {{/if}}
+</script>
+
+</body>
+</html>

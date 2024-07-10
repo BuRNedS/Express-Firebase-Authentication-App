@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        .success-message {
+            display: none;
+            color: green;
+            font-size: 18px;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid green;
+            border-radius: 5px;
+            background-color: #e6ffe6;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Sign Up</h1>
+
+<div class="success-message" id="success-message">Signup successful! Welcome aboard!</div>
+
+<form action="/signup" method="post" onsubmit="return validateForm()">
+    <input placeholder="Name" name="name" type="text" id="name">
+    <br>
+    <input placeholder="Email" name="email" type="email" id="email">
+    <br>
+    <input placeholder="Password" name="password" type="password" id="password">
+    <br>
+    <textarea placeholder="Message" name="message" id="message"></textarea>
+    <br>
+    <input class="sub" type="submit" value="Sign Up">
+</form>
+
+<a href="/login">Go back to login page</a>
+
+{{#if success}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        showSuccessMessage();
+    });
+</script>
+{{/if}}
+
+<script>
+    function validateForm() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const message = document.getElementById('message').value;
+
+        if (!name || !email || !password || !message) {
+            alert("All fields must be filled out");
+            return false;
+        }
+        return true;
+    }
+
+    function showSuccessMessage() {
+        const successMessage = document.getElementById('success-message');
+        successMessage.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
